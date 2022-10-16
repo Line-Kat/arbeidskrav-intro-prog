@@ -86,10 +86,15 @@
             materialInfo.innerHTML = `Treverk: ${chopTree} enheter. Metall: ${collectMetal} enheter. Antall bygninger: ${numberOfBuildings}. Styrke: ${strength}`;
         }
 
+        /*Mister liv (HP)*/
         function reduceHP(){
             HP -= 20;
                 lifeBar.innerHTML = `<p> ${HP}hp </p>`;
                 lifeBar.style.width = `${HP}px`;
+
+            if(HP < 0){
+                alert("GAME OVER!");
+            }
         }
 
         /*Når brukeren klikker på tre øker antall enheter i p-taggen*/
@@ -120,7 +125,7 @@
                 warrior1.style.left = "930px";
             }
             
-            /*Når det er klikket 10 ganger på treet skal det forsvinne*/
+        /*Når det er klikket 10 ganger på treet skal det forsvinne*/
             if( numberClicksTree1 === 10 ){
                 container.removeChild(tree1);
                 numberClicksTree1 = 0;
@@ -146,7 +151,7 @@
         tree2.onclick = clickTree;
         tree3.onclick = clickTree;  
 
-        /*Når brukeren klikker på tre/metalgruve øker antall enheter i p-taggen*/
+        /*Når brukeren klikker på metalgruve øker antall enheter i p-taggen*/
         var collectMetal = 0;
 
         function clickMetalmine(){
@@ -214,7 +219,7 @@
                 outputDiv.innerHTML += "<p>Du beseiret monsteret</p>";
                 monster3HP = 40;
             }
-                
+
             reduceHP();
         }
 
@@ -231,6 +236,7 @@
             }else{
                 alert("Du mangler ressurser til å bygge lite hus");
             }  
+
             materialInfoUpdate();    
         }
 
@@ -244,6 +250,7 @@
             }else{
                 alert("Du mangler ressurser til å bygge stort hus");
             }
+
             materialInfoUpdate();
         }
 
