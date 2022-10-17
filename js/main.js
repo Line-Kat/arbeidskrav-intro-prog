@@ -92,6 +92,8 @@ function handleResources(resource, amount) {
 
     updateInfo();
 
+    monstersAttack();
+    randomMonsters();
 }
 
 function hitMonster(theMonster) {
@@ -108,10 +110,11 @@ function hitMonster(theMonster) {
         monsterDiv.removeChild(theMonster);
 
         let currentMonsters = parseInt(monsterDiv.getAttribute(monstersAtt));
-        monsterDiv.setAttribute(monstersAtt, `${currentMonsters - 1}`)
-    } else {
-        theMonster.setAttribute(hpAtt, `${hp}`);
+        monsterDiv.setAttribute(monstersAtt, `${currentMonsters - 1}`);
+        return;
     }
+
+    theMonster.setAttribute(hpAtt, `${hp}`);
 
     monstersAttack();
 }
@@ -122,21 +125,18 @@ function chopTree(theTree) {
 
     let health = theTree.getAttribute(treeHealthAtt) - 1;
     if (health === 0) {
-        logEvent(`Tree ${tree} was chopped down!`)
+        logEvent(`Tree was chopped down!`)
         document.getElementById(containerId).removeChild(theTree);
+        return;
+
     }
 
     theTree.setAttribute(treeHealthAtt, `${health}`);
-
-    monstersAttack();
-    randomMonsters();
 
 }
 
 function mineMetal() {
     handleResources(metalAtt, 10);
-    monstersAttack()
-    randomMonsters();
 }
 
 function buy(woodNeeded, metalNeeded, performBuy) {
@@ -150,6 +150,7 @@ function buy(woodNeeded, metalNeeded, performBuy) {
         materialInfo.setAttribute(metalAtt, `${metalAmount - metalNeeded}`)
         updateInfo();
     }
+
     monstersAttack()
 }
 
@@ -169,11 +170,11 @@ function buildLargeHouse() {
 
 function buySword() {
     document.getElementById(materialInfoId).setAttribute(strengthAtt, "40");
-
     document.getElementById(buySwordId).disabled = true;
-    logEvent("A new sword!")
-    updateInfo();
 
+    logEvent("A new sword!")
+
+    updateInfo();
 }
 
 function initMonster() {
