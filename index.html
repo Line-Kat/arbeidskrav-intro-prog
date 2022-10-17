@@ -27,7 +27,7 @@
             <button id="buy-building-1-btn"><img src="images/building-1.png"><p>Kjøp (50 treverk, 10 metall)</p></button> 
             <button id="buy-building-2-btn"><img src="images/building-3.png"><p>Kjøp (150 treverk, 30 metall)</p></button>            
             <button id="buy-sword-btn"><img id="sword" src="images/sword.png"><p>Kjøp sverd (200 metall)</p></button>
-            <button id="changeWarrior"><img id="warrior-2" src="images/warrior2.png">Bytt kriger</button>
+            <button id="changeWarrior"><img src="images/warrior2.png">Bytt kriger</button>
         </div>        
 
         <img id="warrior-1" src="images/warrior.png">
@@ -73,7 +73,6 @@
         var outputDiv = document.getElementById("output-div");
 
         var warrior1 = document.getElementById("warrior-1");
-        var warrior2 = document.getElementById("warrior-2");
 
         var monsterDiv = document.getElementById("monster-div");
 
@@ -130,12 +129,7 @@
                 updateOutputDiv("Hugget tre, fikk 25 treverkressurser");
             }
 
-            if(femaleCharacter === true){
-                warrior2.style.left = "930px";
-                console.log(warrior2);
-            }else{
-                warrior1.style.left = "930px";
-            }
+            warrior1.style.left = "930px";
 
         /*Når det er klikket 10 ganger på treet skal det forsvinne*/
             if( numberClicksTree1 === 10 ){
@@ -177,12 +171,8 @@
                 warrior1.style.left = "150px";
             }
 
-            if(femaleCharacter === true){
-                warrior2.style.left = "150px";
-            }else{
-                warrior1.style.left = "150px";
-            }
-
+            warrior1.style.left = "150px";
+            
             if( combat === true ){
                 reduceHP();
             }
@@ -258,11 +248,7 @@
                 combat = false;
             }
 
-            if(femaleCharacter === true){
-                warrior2.style.left = "680px";
-            }else{
                 warrior1.style.left = "680px";
-            }
 
             reduceHP();
         }
@@ -301,13 +287,9 @@
 
 
         /*Knapp for å bytte karakter*/
-        var femaleCharacter = false;
-
         function switchWarrior(){
-            monsterDiv.innerHTML += `<img id="warrior-2" src="images/warrior2.png" width="70px">`;
-            container.removeChild(document.getElementById("warrior-1"));
+            warrior1.src = "images/warrior2.png";
             updateOutputDiv("Du har byttet karakter");
-            femaleCharacter = true;
         }
 
         switchWarriorBtn.onclick = switchWarrior;
