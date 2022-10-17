@@ -101,7 +101,24 @@
             lifeBar.style.width = ` ${HP}px `;
 
             if(HP === 0){
-                updateOutputDiv("GAME OVER");
+                gameOver();
+            }
+        }
+
+        /*Game Over når HP er 0 skrur av alle funksjoner*/
+        function gameOver(){
+            updateOutputDiv("GAME OVER");
+            buyBuilding1Btn.disabled = true;
+            buyBuilding2Btn.disabled = true;
+            sword.disabled = true;
+            switchWarriorBtn.disabled = true;
+            metalMine.onclick = "";
+            tree1.onclick = "";
+            tree2.onclick = "";
+            tree3.onclick = "";
+            var monsterDivArray = monsterDiv.childNodes
+            for (var i=0; i<monsterDivArray.length; i++){
+                monsterDivArray[i].onclick = "";
             }
         }
 
@@ -204,8 +221,6 @@
             }
         }
              
-        
-
         /*Klikker på monstrene (div-tagen) for å beserie monstrene*/
         var monster1HP = 40;
         var monster2HP = 40;
@@ -226,9 +241,6 @@
                 monster3HP -= strength;
                 console.log(this.id);
             }
-            console.log(monster1HP);
-            console.log(monster2HP);
-            console.log(monster3HP);
             if (monster1HP === 0){
                 monsterDiv.removeChild(document.getElementById("cuteMonster-0"));
                 updateOutputDiv("Du beseiret monsteret");
