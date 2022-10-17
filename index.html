@@ -193,24 +193,24 @@
         var combat = false;
 
         function RandomMonsterShowup(){
-            for( var i=0; 1<3; i++)
+            for( var i=0; i<3; i++)
                 var monsterShowup = Math.floor( Math.random() * 10 );
 
-            if( monsterShowup === 5){
-                monsterDiv.innerHTML += ` <img id="cuteMonster-${i}" src="images/cute-wolfman.png"> `;
+                if( monsterShowup === 5){
+                    monsterDiv.innerHTML += ` <img id="cuteMonster-${i}" src="images/cute-wolfman.png"> `;
 
-                var monster1 = document.getElementById("cuteMonster-0");
-                var monster2 = document.getElementById("cuteMonster-1");
-                var monster3 = document.getElementById("cuteMonster-2");
+                    var monster1 = document.getElementById("cuteMonster-0");
+                    var monster2 = document.getElementById("cuteMonster-1");
+                    var monster3 = document.getElementById("cuteMonster-2");
 
-                outputDiv.innerHTML += `<p>Monster dukket opp</p>`;
+                    outputDiv.innerHTML += `<p>Monster dukket opp</p>`;
 
-                monster1.onclick = fightMonster;
-                monster2.onclick = fightMonster;
-                monster3.onclick = fightMonster;
+                    monster1.onclick = fightMonster;
+                    monster2.onclick = fightMonster;
+                    monster3.onclick = fightMonster;
 
-                combat = true;
-            }
+                    combat = true;
+                }
 
             if(combat === true){
                 alert("Du bli angrepet av ulv!");
