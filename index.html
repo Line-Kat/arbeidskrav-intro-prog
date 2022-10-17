@@ -94,7 +94,7 @@
         function reduceHP(){
             HP -= 10;
             lifeBar.innerHTML = `<p> ${HP}hp </p>`;
-            lifeBar.style.width = `${HP}px`;
+            lifeBar.style.width = ` ${HP}px `;
 
             if(HP < 0){
                 alert("GAME OVER!");
@@ -165,6 +165,7 @@
         var collectMetal = 0;
 
         function clickMetalmine(){
+            console.log(clickMetalmine);
             if( this.id === "metal-mine" ){
                 collectMetal += 10;
                 outputDiv.innerHTML += "<p>Hakket i gruven, fikk 10 metallressurser</p>";
@@ -177,7 +178,7 @@
                 warrior1.style.left = "150px";
             }
 
-            if( combat === true){
+            if( combat === true ){
                 reduceHP();
             }
 
@@ -192,19 +193,25 @@
         var combat = false;
 
         function RandomMonsterShowup(){
-            for( var i=0; i<3; i++ ){
+            for( var i=0; 1<3; i++)
                 var monsterShowup = Math.floor( Math.random() * 10 );
-                    
-                if( monsterShowup === 5){
-                    monsterDiv.innerHTML += ` <img id="cuteMonster-${i}" src="images/cute-wolfman.png"> `;
 
-                    var cuteMonster = document.getElementById(`cuteMonster-${i}`); 
-                    outputDiv.innerHTML += `<p>Monster dukket opp</p>`;
-                    cuteMonster.onclick = fightMonster;
+            if( monsterShowup === 5){
+                monsterDiv.innerHTML += ` <img id="cuteMonster-${i}" src="images/cute-wolfman.png"> `;
 
-                    combat = true;
-                }
+                var monster1 = document.getElementById("cuteMonster-0");
+                var monster2 = document.getElementById("cuteMonster-1");
+                var monster3 = document.getElementById("cuteMonster-2");
+
+                outputDiv.innerHTML += `<p>Monster dukket opp</p>`;
+
+                monster1.onclick = fightMonster;
+                monster2.onclick = fightMonster;
+                monster3.onclick = fightMonster;
+
+                combat = true;
             }
+
             if(combat === true){
                 alert("Du bli angrepet av ulv!");
             }
@@ -218,15 +225,17 @@
         var HP = 300;
 
         function fightMonster(){
-        console.log(this.id);
             if(this.id === "cuteMonster-0"){
                 monster1HP -= strength;
+                console.log(this.id);
             }
             if(this.id === "cuteMonster-1"){
                 monster2HP -= strength;
+                console.log(this.id);
             }
             if(this.id === "cuteMonster-2"){
                 monster3HP -= strength;
+                console.log(this.id);
             }
             console.log(monster1HP);
             console.log(monster2HP);
