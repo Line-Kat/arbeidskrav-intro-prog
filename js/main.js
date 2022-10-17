@@ -4,7 +4,7 @@ const metalAtt = "data-metal";
 const buildingsAtt = "data-buildings";
 const strengthAtt = "data-strength";
 const monstersAtt = "data-monsters";
-const hpAtt = "data-hp";
+const monsterHpAtt = "data-monster-hp";
 const warriorHpAtt = "data-warrior-hp";
 
 const monstersDivId = "monster-div";
@@ -99,7 +99,7 @@ function handleResources(resource, amount) {
 function hitMonster(theMonster) {
     logEvent("You are fighting the monsters!")
 
-    let currentHp = parseInt(theMonster.getAttribute(hpAtt));
+    let currentHp = parseInt(theMonster.getAttribute(monsterHpAtt));
     let strength = parseInt(document.getElementById(materialInfoId).getAttribute(strengthAtt));
     let hp = currentHp - strength;
 
@@ -114,7 +114,7 @@ function hitMonster(theMonster) {
         return;
     }
 
-    theMonster.setAttribute(hpAtt, `${hp}`);
+    theMonster.setAttribute(monsterHpAtt, `${hp}`);
 
     monstersAttack();
 }
@@ -179,7 +179,7 @@ function buySword() {
 
 function initMonster() {
     let monsters = document.getElementById(monstersDivId);
-    monsters.innerHTML += `<img src="images/cute-wolfman.png" ${hpAtt}="40" onclick="hitMonster(this)"/>`
+    monsters.innerHTML += `<img src="images/cute-wolfman.png" ${monsterHpAtt}="40" onclick="hitMonster(this)"/>`
 
     logEvent("A monster appeared!")
 
