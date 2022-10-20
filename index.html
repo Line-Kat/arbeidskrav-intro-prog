@@ -100,23 +100,30 @@
             }
         }
 
-        /*Game Over når HP er 0 skrur av alle funksjoner*/
-        function gameOver(){
-            updateOutputDiv( "GAME OVER" );
-            buyBuilding1Btn.disabled = true;
-            buyBuilding2Btn.disabled = true;
-            swordBtn.disabled = true;
-            changeWarriorBtn.disabled = true;
-            metalMine.onclick = "";
-            tree1.onclick = "";
-            tree2.onclick = "";
-            tree3.onclick = "";
-
-            var monsterDivArray = monsterDiv.childNodes
-            for ( var i=0; i<monsterDivArray.length; i++ ){
-                monsterDivArray[i].onclick = "";
-            }
+        /*Knapp for å bytte karakter*/
+        function changeWarrior(){
+            warrior1.src = "images/warrior2.png";
+            updateOutputDiv( "Du har byttet karakter" );
         }
+
+        changeWarriorBtn.onclick = changeWarrior;
+
+        /*Kjøper sverd og styrken til krigeren øker*/
+        combatStrength = 10;
+
+        function buySword(){
+            if( metalResource >= 200 ){
+                combatStrength = 40;
+                metalResource -= 200;
+                swordBtn.style.backgroundColor = "green";  
+                updateOutputDiv( "Kjøpt sverd, styrken har økt til 40" );
+            }else{
+                alert( "Du har ikke nok metall til å kjøpe sverd" );
+            }
+            materialInfoUpdate();
+        }
+
+        swordBtn.onclick = buySword;
 
         /*Oppdaterer outputDiv*/
         function updateOutputDiv( updateAction ){
@@ -299,31 +306,23 @@
         buyBuilding1Btn.onclick = buySmallBuilding;
         buyBuilding2Btn.onclick = buyLargeBuilding;  
 
+        /*Game Over når HP er 0 skrur av alle funksjoner*/
+        function gameOver(){
+            updateOutputDiv( "GAME OVER" );
+            buyBuilding1Btn.disabled = true;
+            buyBuilding2Btn.disabled = true;
+            swordBtn.disabled = true;
+            changeWarriorBtn.disabled = true;
+            metalMine.onclick = "";
+            tree1.onclick = "";
+            tree2.onclick = "";
+            tree3.onclick = "";
 
-        /*Knapp for å bytte karakter*/
-        function changeWarrior(){
-            warrior1.src = "images/warrior2.png";
-            updateOutputDiv( "Du har byttet karakter" );
-        }
-
-        changeWarriorBtn.onclick = changeWarrior;
-
-        /*Kjøper sverd og styrken til krigeren øker*/
-        combatStrength = 10;
-
-        function buySword(){
-            if( metalResource >= 200 ){
-                combatStrength = 40;
-                metalResource -= 200;
-                swordBtn.style.backgroundColor = "green";  
-                updateOutputDiv( "Kjøpt sverd, styrken har økt til 40" );
-            }else{
-                alert( "Du har ikke nok metall til å kjøpe sverd" );
+            var monsterDivArray = monsterDiv.childNodes
+            for ( var i=0; i<monsterDivArray.length; i++ ){
+                monsterDivArray[i].onclick = "";
             }
-            materialInfoUpdate();
         }
-
-        swordBtn.onclick = buySword;
     
     </script>
 
